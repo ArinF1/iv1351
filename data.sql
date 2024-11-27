@@ -1,13 +1,13 @@
 INSERT INTO person (person_id, social_security_number, first_name, surname, email, phone_number, zip_code, street, city)
 VALUES
-  (1, '1234567891', 'Michael', 'Johnson', 'michael.johnson@example.com', '+46 70 123 45 67', '12345', 'Baker Street 221B', 'Stockholm'),
-  (2, '2345678912', 'Laura', 'Smith', 'laura.smith@example.com', '+46 70 234 56 78', '54321', 'Elm Street 742', 'Uppsala'),
-  (3, '3456789123', 'Daniel', 'Brown', 'daniel.brown@example.com', '+46 70 345 67 89', '67890', 'Oak Avenue 12', 'Gothenburg'),
-  (4, '4567891234', 'Emily', 'Davis', 'emily.davis@example.com', '+46 70 456 78 90', '98765', 'Maple Lane 34', 'Malmo'),
-  (5, '5678912345', 'James', 'Wilson', 'james.wilson@example.com', '+46 70 567 89 01', '11223', 'Pine Street 56', 'Lund'),
-  (6, '6789123456', 'Sarah', 'Taylor', 'sarah.taylor@example.com', '+46 70 678 90 12', '22134', 'Cedar Road 78', 'Helsingborg'),
-  (7, '7891234567', 'David', 'Anderson', 'david.anderson@example.com', '+46 70 789 01 23', '33445', 'Birch Drive 90', 'Linkoping'),
-  (8, '8912345678', 'Emma', 'Thomas', 'emma.thomas@example.com', '+46 70 890 12 34', '44356', 'Fir Street 12', 'Vasteras');
+  (1, '1234567891', 'Michael', 'Johnson', 'michael.johnson@example.com', '0701234567', '12345', 'Baker Street 221B', 'Stockholm'),
+  (2, '2345678912', 'Laura', 'Smith', 'laura.smith@example.com', '0702345678', '54321', 'Elm Street 742', 'Uppsala'),
+  (3, '3456789123', 'Daniel', 'Brown', 'daniel.brown@example.com', '0703456789', '67890', 'Oak Avenue 12', 'Gothenburg'),
+  (4, '4567891234', 'Emily', 'Davis', 'emily.davis@example.com', '0704567890', '98765', 'Maple Lane 34', 'Malmo'),
+  (5, '5678912345', 'James', 'Wilson', 'james.wilson@example.com', '0705678901', '11223', 'Pine Street 56', 'Lund'),
+  (6, '6789123456', 'Sarah', 'Taylor', 'sarah.taylor@example.com', '0706789012', '22134', 'Cedar Road 78', 'Helsingborg'),
+  (7, '7891234567', 'David', 'Anderson', 'david.anderson@example.com', '0707890123', '33445', 'Birch Drive 90', 'Linkoping'),
+  (8, '8912345678', 'Emma', 'Thomas', 'emma.thomas@example.com', '0708901234', '44356', 'Fir Street 12', 'Vasteras');
 
 INSERT INTO instructor (instructor_id, salary, instrument_type, lesson_type, person_id)
 VALUES
