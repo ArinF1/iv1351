@@ -112,9 +112,8 @@ CREATE TABLE lesson_price_history (
 );
 
 CREATE TABLE ensembles (
-    ensemble_id INT NOT NULL,
-    instructor_id INT NOT NULL,
-    student_id INT NOT NULL,
+    ensemble_id INT NOT NULL UNIQUE,
+    instructor_id INT NOT NULL UNIQUE,
     max_students INT NOT NULL,
     min_students INT NOT NULL,
     instrument_type VARCHAR(100) NOT NULL,
@@ -123,9 +122,8 @@ CREATE TABLE ensembles (
     genre_id INT NOT NULL,
     price_id INT,
     price_history_id INT,
-    PRIMARY KEY (ensemble_id, instructor_id, student_id),
+    PRIMARY KEY (ensemble_id, instructor_id),
     FOREIGN KEY (instructor_id) REFERENCES instructor(instructor_id),
-    FOREIGN KEY (student_id) REFERENCES student(student_id),
     FOREIGN KEY (genre_id) REFERENCES music_genre(genre_id),
     FOREIGN KEY (price_id) REFERENCES price_lesson_layout(price_id),
     FOREIGN KEY (price_history_id) REFERENCES lesson_price_history(price_history_id)
@@ -148,9 +146,8 @@ CREATE TABLE individual_lesson (
 );
 
 CREATE TABLE group_lessons (
-    group_lesson_id INT NOT NULL,
-    instructor_id INT NOT NULL,
-    student_id INT NOT NULL,
+    group_lesson_id INT NOT NULL UNIQUE,
+    instructor_id INT NOT NULL UNIQUE,
     max_students INT NOT NULL,
     min_students INT NOT NULL,
     instrument_type VARCHAR(100) NOT NULL,
@@ -158,9 +155,8 @@ CREATE TABLE group_lessons (
     skill_level VARCHAR(100) NOT NULL,
     price_id INT,
     price_history_id INT,
-    PRIMARY KEY (group_lesson_id, instructor_id, student_id),
+    PRIMARY KEY (group_lesson_id, instructor_id),
     FOREIGN KEY (instructor_id) REFERENCES instructor(instructor_id),
-    FOREIGN KEY (student_id) REFERENCES student(student_id),
     FOREIGN KEY (price_id) REFERENCES price_lesson_layout(price_id),
     FOREIGN KEY (price_history_id) REFERENCES lesson_price_history(price_history_id)
 );
@@ -192,8 +188,7 @@ CREATE TABLE price_lesson_layout_group_lessons (
     price_id INT NOT NULL,
     group_lesson_id INT NOT NULL,
     instructor_id INT NOT NULL,
-    student_id INT NOT NULL,
-    FOREIGN KEY (group_lesson_id, instructor_id, student_id) REFERENCES group_lessons(group_lesson_id, instructor_id, student_id) ON DELETE CASCADE,
+    FOREIGN KEY (group_lesson_id, instructor_id) REFERENCES group_lessons(group_lesson_id, instructor_id) ON DELETE CASCADE,
     FOREIGN KEY (price_id) REFERENCES price_lesson_layout(price_id) ON DELETE CASCADE
 );
 
@@ -201,8 +196,7 @@ CREATE TABLE price_lesson_layout_ensembles (
     price_id INT NOT NULL,
     ensemble_id INT NOT NULL,
     instructor_id INT NOT NULL,
-    student_id INT NOT NULL,
-    FOREIGN KEY (ensemble_id, instructor_id, student_id) REFERENCES ensembles(ensemble_id, instructor_id, student_id) ON DELETE CASCADE,
+    FOREIGN KEY (ensemble_id, instructor_id) REFERENCES ensembles(ensemble_id, instructor_id) ON DELETE CASCADE,
     FOREIGN KEY (price_id) REFERENCES price_lesson_layout(price_id) ON DELETE CASCADE
 );
 
@@ -213,6 +207,22 @@ CREATE TABLE price_lesson_layout_individual_lesson (
     student_id INT NOT NULL,
     FOREIGN KEY (individual_lesson_id, instructor_id, student_id) REFERENCES individual_lesson(individual_lesson_id, instructor_id, student_id) ON DELETE CASCADE,
     FOREIGN KEY (price_id) REFERENCES price_lesson_layout(price_id) ON DELETE CASCADE
+);
+
+CREATE TABLE group_lesson_students (
+    group_lesson_id INT NOT NULL,
+    student_id INT NOT NULL,
+    instructor_id INT NOT NULL,
+    FOREIGN KEY (group_lesson_id, instructor_id) REFERENCES group_lessons(group_lesson_id, instructor_id),
+    FOREIGN KEY (student_id) REFERENCES student(student_id)
+);
+
+CREATE TABLE ensemble_students (
+    ensemble_id INT NOT NULL,
+    student_id INT NOT NULL,
+    instructor_id INT NOT NULL,
+    FOREIGN KEY (ensemble_id, instructor_id) REFERENCES ensembles(ensemble_id, instructor_id),
+    FOREIGN KEY (student_id) REFERENCES student(student_id)
 );
 
 
