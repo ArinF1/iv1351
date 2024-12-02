@@ -63,7 +63,9 @@ INSERT INTO music_genre (genre_id, genre) VALUES
 (2, 'Jazz'),
 (3, 'Rock'),
 (4, 'Pop'),
-(5, 'Blues');
+(5, 'Blues'),
+(6, 'Jazz'),
+(7, 'Blues');
 
 INSERT INTO instrument (instrument_id, instrument_type) VALUES
 (1, 'Piano'),
@@ -87,32 +89,59 @@ INSERT INTO renting_instrument (rental_id, instrument_id, stock_id, effective_fr
 INSERT INTO booking (time_slot_id, instructor_id, schedule_time) VALUES
 (1, 1, '2024-12-01'),
 (2, 2, '2024-12-02'),
-(3, 3, '2024-12-03');
+(3, 3, '2024-12-03'),
+(201, 1, '2024-12-04'),
+(202, 2, '2024-12-05'),
+(203, 3, '2024-12-06'),
+(301, 1, '2024-10-05'),
+(302, 2, '2024-10-12'),
+(303, 3, '2024-10-19'),
+(304, 4, '2024-11-05'),
+(305, 5, '2024-11-12'),
+(306, 1, '2024-11-19'),
+(401, 1, '2024-12-08'),
+(402, 2, '2024-12-09'),
+(403, 3, '2024-12-10');
+
+
+INSERT INTO price_lesson_layout (price_id, amount, skill_level, lesson_type, time_slot_id, instructor_id) VALUES
+(1, 120, 'Beginner', 'Individual', 1, 1),
+(2, 170, 'Intermediate', 'Individual', 1, 1),
+(3, 220, 'Advanced', 'Individual', 1, 1),
+(4, 140, 'Beginner', 'Group', 2, 2),
+(5, 190, 'Intermediate', 'Group', 2, 2),
+(6, 240, 'Advanced', 'Group', 2, 2),
+(7, 160, 'Beginner', 'Ensemble', 3, 3),
+(8, 210, 'Intermediate', 'Ensemble', 3, 3),
+(9, 260, 'Advanced', 'Ensemble', 3, 3);
 
 INSERT INTO lesson_price_history (price_history_id, price_id, lesson_type, skill_level, amount, effective_from, effective_to) VALUES
-(1, 1, 'Individual', 'Beginner', 100, '2024-01-01 10:00:00', '2024-12-31 10:00:00'),
-(2, 2, 'Individual', 'Intermediate', 150, '2024-01-01 10:00:00', '2024-12-31 10:00:00'),
-(3, 3, 'Individual', 'Advanced', 200, '2024-01-01 10:00:00', '2024-12-31 10:00:00'),
-(4, 4, 'Group', 'Beginner', 120, '2024-01-01 10:00:00', '2024-12-31 10:00:00'),
-(5, 5, 'Group', 'Intermediate', 170, '2024-01-01 10:00:00', '2024-12-31 10:00:00'),
-(6, 6, 'Group', 'Advanced', 220, '2024-01-01 10:00:00', '2024-12-31 10:00:00'),
-(7, 7, 'Ensemble', 'Beginner', 140, '2024-01-01 10:00:00', '2024-12-31 10:00:00'),
-(8, 8, 'Ensemble', 'Intermediate', 190, '2024-01-01 10:00:00', '2024-12-31 10:00:00'),
-(9, 9, 'Ensemble', 'Advanced', 240, '2024-01-01 10:00:00', '2024-12-31 10:00:00');
+(1, 1, 'Individual', 'Beginner', 100, '2023-01-01 10:00:00', '2023-12-31 10:00:00'),
+(2, 2, 'Individual', 'Intermediate', 150, '2023-01-01 10:00:00', '2023-12-31 10:00:00'),
+(3, 3, 'Individual', 'Advanced', 200, '2023-01-01 10:00:00', '2023-12-31 10:00:00'),
+(4, 4, 'Group', 'Beginner', 120, '2023-01-01 10:00:00', '2023-12-31 10:00:00'),
+(5, 5, 'Group', 'Intermediate', 170, '2023-01-01 10:00:00', '2023-12-31 10:00:00'),
+(6, 6, 'Group', 'Advanced', 220, '2023-01-01 10:00:00', '2023-12-31 10:00:00'),
+(7, 7, 'Ensemble', 'Beginner', 140, '2023-01-01 10:00:00', '2023-12-31 10:00:00'),
+(8, 8, 'Ensemble', 'Intermediate', 190, '2023-01-01 10:00:00', '2023-12-31 10:00:00'),
+(9, 9, 'Ensemble', 'Advanced', 240, '2023-01-01 10:00:00', '2023-12-31 10:00:00');
 
-INSERT INTO ensembles (ensemble_id, instructor_id, max_students, min_students, instrument_type, lesson_type, skill_level, genre_id) VALUES
-(101, 1, 3, 2, 'Piano', 'Ensemble', 'Advanced', 1),
-(102, 2, 5, 3, 'Guitar', 'Ensemble', 'Intermediate', 2),
-(103, 3, 4, 2, 'Violin', 'Ensemble', 'Beginner', 3),
-(104, 1, 5, 3, 'Piano', 'Ensemble', 'Advanced', 1),
-(105, 2, 6, 3, 'Guitar', 'Ensemble', 'Intermediate', 2),
-(106, 3, 10, 3, 'Violin', 'Ensemble', 'Beginner', 3);
+INSERT INTO ensembles (ensemble_id, instructor_id, max_students, min_students, instrument_type, lesson_type, skill_level, genre_id, price_id,price_history_id) VALUES
+(101, 1, 3, 2, 'Piano', 'Ensemble', 'Advanced', 1,1,1),
+(102, 2, 5, 3, 'Guitar', 'Ensemble', 'Intermediet', 2,2,2),
+(103, 3, 4, 2, 'Violin', 'Ensemble', 'Beginner', 3,3,3),
+(104, 4, 5, 3, 'Piano', 'Ensemble', 'Advanced', 1,4,4),
+(105, 5, 6, 3, 'Guitar', 'Ensemble', 'Intermediet', 2,5,5);
 
 INSERT INTO individual_lesson (individual_lesson_id, instructor_id, student_id, instrument_type, lesson_type, skill_level, price_id, price_history_id) VALUES
-(1, 1, 1, 'Piano', 'Individual', 'Beginner', 1, 1);
+(1, 1, 1, 'Piano', 'Individual', 'Beginner', 1, 1),
+(2, 1, 2, 'Piano', 'Individual', 'Intermediate', 2, 2),
+(3, 1, 3, 'Piano', 'Individual', 'Advanced', 3, 3);
 
-INSERT INTO group_lessons (group_lesson_id, instructor_id, student_id, max_students, min_students, instrument_type, lesson_type, skill_level, price_id, price_history_id) VALUES
-(1, 2, 2, 8, 4, 'Guitar', 'Group', 'Intermediate', 5, 5);
+INSERT INTO group_lessons (group_lesson_id, instructor_id, max_students, min_students, instrument_type, lesson_type, skill_level, price_id, price_history_id) VALUES
+(1, 2, 8, 4, 'Guitar', 'Group', 'Intermediate', 5, 5),
+(2, 3, 8, 4, 'Guitar', 'Group', 'Beginner', 4, 4),
+(3, 5, 8, 4, 'Flute', 'Group', 'Intermediate', 5, 5);
 
 INSERT INTO student_payment (billing_id, amount, payment_date, sibling_discount, student_id, price_history_id, price_id) VALUES
 (1, 100, '2024-11-01', 0, 1, 1, 1),
@@ -122,11 +151,12 @@ INSERT INTO booking_student_payment (time_slot_id, instructor_id, billing_id) VA
 (1, 1, 1),
 (2, 2, 2);
 
-INSERT INTO price_lesson_layout_group_lessons (price_id, group_lesson_id, instructor_id, student_id) VALUES
-(5, 1, 2, 2);
 
-INSERT INTO price_lesson_layout_ensembles (price_id, ensemble_id, instructor_id, student_id) VALUES
-(9, 1, 3, 5);
+INSERT INTO price_lesson_layout_group_lessons (price_id, group_lesson_id, instructor_id) VALUES
+(5, 1, 2);
+
+INSERT INTO price_lesson_layout_ensembles (price_id, ensemble_id, instructor_id) VALUES
+(9, 101, 1);
 
 INSERT INTO price_lesson_layout_individual_lesson (price_id, individual_lesson_id, instructor_id, student_id) VALUES
 (1, 1, 1, 1);
@@ -148,50 +178,6 @@ INSERT INTO ensemble_students (ensemble_id, student_id, instructor_id) VALUES
 (103, 9, 3),
 (103, 10, 3),
 (103, 11, 3),
-(103, 12, 3),
-(104, 1, 1),
-(104, 2, 1),
-(104, 3, 1),
-(104, 4, 1),
-(105, 5, 2),
-(105, 6, 2),
-(105, 7, 2),
-(105, 8, 2),
-(106, 9, 3),
-(106, 10, 3),
-(106, 11, 3);
+(103, 12, 3);
 
-INSERT INTO booking (time_slot_id, instructor_id, schedule_time)
-VALUES
-(201, 1, '2024-12-04'),
-(202, 2, '2024-12-05'), 
-(203, 3, '2024-12-06');
 
-INSERT INTO music_genre (genre_id, genre) VALUES
-(6, 'Jazz'), 
-(7, 'Blues');
-
-INSERT INTO booking (time_slot_id, instructor_id, schedule_time)
-VALUES
-(301, 1, '2024-10-05'),
-(302, 2, '2024-10-12'),
-(303, 3, '2024-10-19'),
-(304, 4, '2024-11-05'),
-(305, 5, '2024-11-12'),
-(306, 1, '2024-11-19');
-
-INSERT INTO individual_lesson (individual_lesson_id, instructor_id, student_id, instrument_type, lesson_type, skill_level, price_id, price_history_id)
-VALUES
-(2, 1, 2, 'Piano', 'Individual', 'Intermediate', 2, 2),
-(3, 1, 3, 'Piano', 'Individual', 'Advanced', 3, 3);
-
-INSERT INTO group_lessons (group_lesson_id, instructor_id, max_students, min_students, instrument_type, lesson_type, skill_level, price_id, price_history_id)
-VALUES
-(2, 2, 8, 4, 'Guitar', 'Group', 'Beginner', 4, 4),
-(3, 5, 8, 4, 'Flute', 'Group', 'Intermediate', 5, 5);
-
-INSERT INTO booking (time_slot_id, instructor_id, schedule_time)
-VALUES
-(401, 1, '2024-12-08'),
-(402, 2, '2024-12-09'),
-(403, 3, '2024-12-10');
