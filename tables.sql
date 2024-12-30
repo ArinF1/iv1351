@@ -227,3 +227,29 @@ CREATE TABLE ensemble_students (
 
 
 
+/*Enforces that student can only rent maximum two instruments concurrently*/
+CREATE OR REPLACE FUNCTION enforce_instrument_limit()
+RETURNS TRIGGER AS $$
+BEGIN
+
+    IF (
+        SELECT COUNT(*)
+        FROM renting_instrument
+        WHERE student_id = NEW.student_id
+          AND effective_from <= NOW()
+          AND effective_to >= NOW()
+    ) >= 2 THEN
+        RAISE EXCEPTION 'A student can only rent up to two instruments at a time.';
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER enforce_instrument_limit_trigger
+BEFORE INSERT OR UPDATE ON renting_instrument
+FOR EACH ROW
+EXECUTE FUNCTION enforce_instrument_limit();
+
+
+

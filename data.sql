@@ -181,3 +181,13 @@ INSERT INTO ensemble_students (ensemble_id, student_id, instructor_id) VALUES
 (103, 12, 3);
 
 
+/*Inserting a new rental for student_id 1 giving him a total of two instruments*/
+INSERT INTO renting_instrument (rental_id, instrument_id, stock_id, effective_from, effective_to, rental_price, student_id) VALUES 
+(101, 1, 1, '2024-01-01 00:00:00', '2024-12-31 00:00:00', 500, 1);
+
+
+/*Now inserting another rental instrument for student_id 1 activating the trigger*/
+INSERT INTO renting_instrument (rental_id, instrument_id, stock_id, effective_from, effective_to, rental_price, student_id) VALUES 
+(103, 3, 3, '2024-01-01 00:00:00', '2024-12-31 00:00:00', 700, 1);
+/*Message output after this insert:
+A student can only rent up to two instruments at a time.*/
